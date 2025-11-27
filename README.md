@@ -134,5 +134,4 @@ cd server
 ## 👨‍💻 Автор
 
 **Твое Имя**
-- GitHub: [@your-username](https://github.com/your-username)
-- Email: your.email@example.com
+- GitHub: https://github.com/leonis2010
