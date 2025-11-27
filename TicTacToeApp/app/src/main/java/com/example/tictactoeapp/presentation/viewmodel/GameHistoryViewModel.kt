@@ -1,0 +1,92 @@
+// ./main/java/com/example/tictactoeapp/presentation/viewmodel/GameHistoryViewModel.kt
+package com.example.tictactoeapp.presentation.viewmodel
+
+import androidx.lifecycle.ViewModel
+import com.example.tictactoeapp.domain.repository.GameRepository
+import com.example.tictactoeapp.mapper.DomainToViewDataMapper
+import com.example.tictactoeapp.presentation.model.GameHistoryViewData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
+
+@HiltViewModel
+class GameHistoryViewModel @Inject constructor(
+    private val gameRepository: GameRepository,
+    private val domainToViewDataMapper: DomainToViewDataMapper
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow(GameHistoryState())
+    val uiState: StateFlow<GameHistoryState> = _uiState.asStateFlow()
+
+    private val compositeDisposable = CompositeDisposable()
+
+    init {
+        loadGameHistory()
+    }
+
+    fun loadGameHistory() {
+        println("🟡 DEBUG: GameHistoryViewModel - loadGameHistory() called")
+
+        _uiState.value = _uiState.value.copy(isLoading = true, errorMessage = null)
+
+        gameRepository.getGameHistory()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ historyList ->
+                println("🟢 DEBUG: GameHistoryViewModel - getGameHistory SUCCESS: ${historyList.size} games")
+
+                val viewDataList = historyList.map { domainToViewDataMapper.mapGameHistoryToViewData(it) }
+
+                _uiState.value = _uiState.value.copy(
+                    history = viewDataList,
+                    isLoading = false,
+                    errorMessage = null
+                )
+            }, { error ->
+                println("🔴 DEBUG: GameHistoryViewModel - getGameHistory ERROR: ${error.message}")
+                error.printStackTrace()
+
+                val message = if (error is retrofit2.HttpException) {
+                    when (error.code()) {
+                        401 -> "Необходимо авторизоваться"
+                        404 -> "История игр не найдена"
+                        500 -> "Ошибка сервера"
+                        else -> error.message ?: "Ошибка сети (${error.code()})"
+                    }
+                } else {
+                    error.message ?: "Неизвестная ошибка"
+                }
+
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false,
+                    errorMessage = message
+                )
+            })
+            .addTo(compositeDisposable)
+    }
+
+    fun refreshHistory() {
+        loadGameHistory()
+    }
+
+    fun clearError() {
+        _uiState.value = _uiState.value.copy(errorMessage = null)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
+}
+
+data class GameHistoryState(
+    val history: List<GameHistoryViewData> = emptyList(),
+    val isLoading: Boolean = false,
+    val errorMessage: String? = null
+)

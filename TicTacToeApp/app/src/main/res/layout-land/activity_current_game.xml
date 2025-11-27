@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Левая часть: информация об игре -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textViewGameId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Game ID: "
+                android:textSize="12sp"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/textViewGameStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Status: Waiting for players"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end" />
+
+            <!-- Информация об игроках -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewPlayer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/player_background"
+                    android:text="Player 1 (X): "
+                    android:textSize="12sp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/textViewPlayer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:background="@drawable/player_background"
+                    android:text="Player 2 (O): "
+                    android:textSize="12sp"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <!-- Состояние игры -->
+            <TextView
+                android:id="@+id/textViewGameStateMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text=""
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:maxLines="3"
+                android:ellipsize="end" />
+
+        </LinearLayout>
+
+        <!-- Правая часть: игровое поле -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <GridLayout
+                android:id="@+id/gridLayoutBoard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="3">
+
+                <!-- Ряд 1 -->
+                <Button
+                    android:id="@+id/buttonCell00"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCell01"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCell02"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="0"
+                    android:layout_column="2"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <!-- Ряд 2 -->
+                <Button
+                    android:id="@+id/buttonCell10"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCell11"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCell12"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="1"
+                    android:layout_column="2"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <!-- Ряд 3 -->
+                <Button
+                    android:id="@+id/buttonCell20"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="2"
+                    android:layout_column="0"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCell21"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCell22"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_row="2"
+                    android:layout_column="2"
+                    android:layout_margin="2dp"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </GridLayout>
+
+        </LinearLayout>
+
+        <!-- ProgressBar ДОЛЖЕН БЫТЬ ВНУТРИ основного LinearLayout -->
+        <ProgressBar
+            android:id="@+id/progressBarLoading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </LinearLayout> <!-- Закрывающий тег основного LinearLayout -->
+
+</ScrollView> <!-- Закрывающий тег ScrollView -->

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:name=".TicTacToeApplication"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TicTacToeApp"
+        tools:targetApi="31">
+        <!-- LoginActivity как основная точка входа -->
+        <activity
+            android:name=".presentation.ui.LoginActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TicTacToeApp"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- RegisterActivity -->
+        <activity
+            android:name=".presentation.ui.RegisterActivity"
+            android:exported="false"
+            android:label="Register"
+            android:theme="@style/Theme.TicTacToeApp"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- GamesListActivity -->
+        <activity
+            android:name=".presentation.ui.GamesListActivity"
+            android:exported="false"
+            android:label="Games List"
+            android:theme="@style/Theme.TicTacToeApp" />
+
+        <!-- CreateGameActivity -->
+        <activity
+            android:name=".presentation.ui.CreateGameActivity"
+            android:exported="false"
+            android:label="Create Game"
+            android:theme="@style/Theme.TicTacToeApp" />
+
+        <!-- CurrentGameActivity -->
+        <activity
+            android:name=".presentation.ui.CurrentGameActivity"
+            android:exported="false"
+            android:label="Current Game"
+            android:theme="@style/Theme.TicTacToeApp" />
+
+        <!-- GameHistoryActivity -->
+        <activity
+            android:name=".presentation.ui.GameHistoryActivity"
+            android:exported="false"
+            android:label="История игр"
+            android:theme="@style/Theme.TicTacToeApp" />
+
+        <!-- LeaderboardActivity -->
+        <activity
+            android:name=".presentation.ui.LeaderboardActivity"
+            android:exported="false"
+            android:label="Таблица лидеров"
+            android:theme="@style/Theme.TicTacToeApp" />
+
+    </application>
+
+</manifest>

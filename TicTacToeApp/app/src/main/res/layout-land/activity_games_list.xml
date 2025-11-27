@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Левая часть: заголовок и кнопки -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/textViewTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/existing_games"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Вертикальное расположение кнопок -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/buttonCreateGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_new_game" />
+
+                <Button
+                    android:id="@+id/buttonHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="История игр"
+                    android:backgroundTint="#4CAF50" />
+
+                <Button
+                    android:id="@+id/buttonLeaderboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Таблица лидеров"
+                    android:backgroundTint="#FF9800" />
+
+                <Button
+                    android:id="@+id/buttonLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/logout" />
+
+            </LinearLayout>
+
+            <!-- Временная кнопка для тестирования -->
+            <Button
+                android:id="@+id/buttonTestRefresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Test Refresh"
+                android:backgroundTint="#FF9800"
+                android:visibility="gone" />
+
+            <!-- Элементы состояния -->
+            <TextView
+                android:id="@+id/textViewNoGames"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="No games available"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/progressBarLoading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- Правая часть: список игр -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewGames"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_game" />
+
+    </LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

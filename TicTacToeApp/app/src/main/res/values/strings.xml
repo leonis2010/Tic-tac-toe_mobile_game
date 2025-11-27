@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TicTacToeApplication</string>
+    <string name="game_id_format">Game ID: %1$s…</string>
+    <string name="status_format">Status: %1$s</string>
+    <string name="player_format">%1$s (%2$s)</string>
+    <string name="draw_message">Ничья!\nОтличный результат против компьютера!\nМашину нельзя победить! 🎯</string>
+    <string name="existing_games">Список Игр</string>
+    <string name="create_new_game">Создать новую игру</string>
+    <string name="logout">Выход</string>
+    <string name="status_waiting_for_players">Статус: Ожидание игроков</string>
+    <string name="player_1_x">Игрок 1 (X):</string>
+    <string name="player_2_o">Игрок 2 (O):</string>
+
+    <string name="leaderboard_title">Таблица лидеров</string>
+    <string name="back_button">Назад</string>
+    <string name="no_data_message">Нет данных для отображения</string>
+    <string name="games_stats_format">%d/%d/%d</string>
+    <string name="win_rate_format">%.1f%%</string>
+</resources>
